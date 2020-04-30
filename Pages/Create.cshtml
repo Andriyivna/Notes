@@ -12,7 +12,8 @@
         @foreach (var note in Model.NotesList)
         {
             <form class="note" method="post">
-                <p class="note-name">@note.Name</p><p>@note.Content</p>
+                <p class="note-name">@note.Name</p>
+                <p class="note-short-content">@note.Content</p>
                 <div class="delete-button ">
                     <button  class="font-button" type="submit" asp-page-handler="delete" asp-route-id="@note.Id"> Delete</button>
                      <a   class="read-more" asp-page="DisplayNotes"  asp-route-id="@note.Id">Open</a>

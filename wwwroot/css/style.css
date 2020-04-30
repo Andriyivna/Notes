@@ -1,0 +1,71 @@
+﻿.main-section {
+    width: 100%;
+  
+}
+.row-flex {
+    display: flex;
+    flex-direction: row;
+}
+.note {
+    padding:15px;
+}
+.first-div {
+    width: 700px;
+    height:1100px;
+    border-right: solid 1px;
+    border-right-color: black;
+}
+.second-div {
+    width: 100%;
+    height: 1100px;
+}
+.toolbar {
+    justify-content: space-between;
+
+    padding: 10px;
+}
+.name-of-notes{
+   
+    font-size:20px;
+}
+.add{
+
+    width:90px;
+    height:30px;
+    margin-top:15px;
+   
+}
+.main-title{
+    font-size:20px;
+
+}
+.bottom-border {
+
+    border-bottom: solid 1px;
+    border-bottom-color: black;
+}
+.text-area {
+    height: 1100px;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+.note:hover {
+
+    background-color:darksalmon;
+}
+
+.input-note {
+    width: 500px;
+    height: 350px;
+    background-color: bisque;
+    outline: none;
+}
+.notes-bg {
+    background-color: bisque;
+    width: 1600px;
+    height: 1000px;
+}
+.delete-button {
+    text-align: right;
+}

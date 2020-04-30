@@ -1,0 +1,44 @@
+﻿@page
+
+@model Notes.CreateModel
+
+
+<section class="main-section row-flex">
+    <div class="first-div">
+        <div class="row-flex toolbar bottom-border">
+            <p class="main-title">NOTES</p>
+            <p><a class="add" href='@Url.Page("/Create")'>Add notes</a></p>
+        </div>
+        @foreach (var note in Model.NotesList)
+        {
+            <form class="note" method="post">
+                <p>@note.Name</p><p>@note.Content</p>
+                <div class="delete-button ">
+                    <button type="submit" asp-page-handler="delete" asp-route-id="@note.Id"> Delete</button>
+                     <a asp-page="DisplayNotes"  asp-route-id="@note.Id">Изменить</a>
+                </div>
+
+            </form>
+        }
+    </div>
+    <div class="second-div">
+        <div class=" row-flex toolbar">
+            <p class="name-of-notes">Do homework</p>
+        </div>
+        <div class="notes-bg">
+            <div asp-validation-summary="All"></div>
+            <form method="post">
+                <div>
+                    <label>Name of notes </label><br />
+                    <textarea asp-for="NewNote.Name"></textarea>
+                </div>
+                <div>
+                    <label>Text:</label><br />
+                    <textarea class="input-note" asp-for="NewNote.Content"></textarea>
+                </div>
+                <input type="submit" value="Apply" />
+            </form>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,33 @@
+﻿@page
+@model Notes.IndexModel
+
+
+
+
+<section class="main-section row-flex">
+    <div class="first-div">
+        <div class="row-flex toolbar bottom-border">
+            <p class="main-title">NOTES</p>
+            <p><a class="add" href='@Url.Page("/Create")'>Add note</a></p>
+        </div>
+        @foreach (var note in Model.NotesList)
+        {
+            <form class="note" method="post">
+                <p>@note.Name</p><p>@note.Content</p>
+                 <div class="delete-button "  >
+                     <button type="submit" asp-page-handler="Delete" asp-route-id="@note.Id"> Delete</button>
+                     <a asp-page="DisplayNotes"  asp-route-id="@note.Id">Изменить</a>
+                </div>
+            </form>
+        }
+    </div>
+    <div class="second-div">
+        <div class=" row-flex toolbar">
+            <p class="name-of-notes">Do homework</p>
+        </div>
+        <div class="notes-bg">
+        </div>
+    </div>
+</section>
+
+

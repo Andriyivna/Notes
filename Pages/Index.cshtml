@@ -3,29 +3,31 @@
 
 
 
-
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 <section class="main-section row-flex">
     <div class="first-div">
         <div class="row-flex toolbar bottom-border">
             <p class="main-title">NOTES</p>
-            <p><a class="add" href='@Url.Page("/Create")'>Add note</a></p>
+            <p><a class="add read-more" href='@Url.Page("/Create")'>Add note</a></p>
         </div>
         @foreach (var note in Model.NotesList)
         {
             <form class="note" method="post">
-                <p>@note.Name</p><p>@note.Content</p>
+                <p class="note-name" >@note.Name</p><p>@note.Content</p>
                  <div class="delete-button "  >
-                     <button type="submit" asp-page-handler="Delete" asp-route-id="@note.Id"> Delete</button>
-                     <a asp-page="DisplayNotes"  asp-route-id="@note.Id">Изменить</a>
+                     <button class="font-button" type="submit" asp-page-handler="Delete" asp-route-id="@note.Id"> Delete</button>
+                     <a class="read-more" asp-page="DisplayNotes"  asp-route-id="@note.Id">Open</a>
                 </div>
             </form>
         }
     </div>
     <div class="second-div">
         <div class=" row-flex toolbar">
-            <p class="name-of-notes">Do homework</p>
         </div>
         <div class="notes-bg">
+            <p class="help-message padding-left"> "Open" - to open existing notes for edit it or to read all text</p>
+            <p class="help-message padding-left"> "Add notes"- to add new notes </p>
+
         </div>
     </div>
 </section>

@@ -1,43 +1,51 @@
-﻿.main-section {
-    width: 100%;
-  
+﻿* {
+    padding: 0;
+    margin: 0;
+   
+}
+.main-section {
+    width: 100%;  
 }
 .row-flex {
     display: flex;
     flex-direction: row;
 }
 .note {
-    padding:15px;
+    padding: 15px;
+    font-family: 'Montserrat';
 }
 .first-div {
     width: 700px;
-    height:1100px;
+    height: 100vh;
     border-right: solid 1px;
     border-right-color: black;
+    background-color: bisque;
 }
 .second-div {
     width: 100%;
-    height: 1100px;
+    height: 100vh;
 }
 .toolbar {
     justify-content: space-between;
-
-    padding: 10px;
+    background-color: bisque;
+    padding: 30px;
+ 
+    font-family: 'Montserrat';
 }
 .name-of-notes{
-   
+ 
     font-size:20px;
 }
-.add{
-
-    width:90px;
-    height:30px;
-    margin-top:15px;
-   
+.add {
+    width: 90px;
+    height: 30px;
+    margin-top: 15px;
+    font-family: 'Montserrat';
 }
-.main-title{
-    font-size:20px;
-
+.main-title {
+    font-size: 20px;
+    font-family: 'Montserrat';
+    letter-spacing: 2px;
 }
 .bottom-border {
 
@@ -45,7 +53,7 @@
     border-bottom-color: black;
 }
 .text-area {
-    height: 1100px;
+    height: 100vh;
     width: 100%;
     border: none;
     outline: none;
@@ -60,12 +68,69 @@
     height: 350px;
     background-color: bisque;
     outline: none;
+    border: none;
+    font-family: 'Montserrat';
+    resize: none;
 }
 .notes-bg {
     background-color: bisque;
     width: 1600px;
-    height: 1000px;
+    height: 100vh;
 }
 .delete-button {
     text-align: right;
+    font-family: 'Montserrat';
+}
+
+.font-button {
+    width: 80px;
+    height: 40px;
+    background-color: burlywood;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Montserrat';
+    border:none;
+}
+
+.read-more {
+    width: 100px;
+    height: 20px;
+    background-color: burlywood;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Montserrat';
+    text-decoration: none;
+}
+
+.note-name {
+    font-weight:bold;
+
+}
+.font {
+    font-family: 'Montserrat';
+}
+.bg {
+    
+    background-color: bisque;
+}
+
+.header-note-name {
+    font-family: 'Montserrat';
+    font-weight: bold;
+    border: none;
+    resize: none;
+    outline: none;
+}
+.padding-left {
+
+    padding-left:20px;
+}
+.help-message {
+    font-family: 'Montserrat';
+    font-size: 40px;
+    color:grey;
 }

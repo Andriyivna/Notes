@@ -1,45 +1,40 @@
 ﻿@page  "{id:int}"
 @model Notes.DisplayNotesModel
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
 <section class="main-section row-flex">
     <div class="first-div">
         <div class="row-flex toolbar bottom-border">
             <p class="main-title">NOTES</p>
-            <p><a class="add" href='@Url.Page("/Create")'>Add notes</a></p>
+            <p><a class="add read-more" href='@Url.Page("/Create")'>Add notes</a></p>
         </div>
         @foreach (var note in Model.NotesList)
         {
             <form class="note"  method="post">
-                <p>@note.Name</p><p>@note.Content</p>
+                <p class="note-name">@note.Name</p><p>@note.Content</p>
                 <div class="delete-button ">
-                    <button asp-page-handler="delete" asp-route-id="@note.Id"> Delete</button>
-                     <a asp-page="DisplayNotes"  asp-route-id="@note.Id">Изменить</a>
+                    <button class="font-button" asp-page-handler="delete" asp-route-id="@note.Id"> Delete</button>
+                     <a  class="read-more" asp-page="DisplayNotes"  asp-route-id="@note.Id">Open</a>
                 </div>
             </form>
         }
     </div>
-    <div class="second-div">
+    <form class="second-div" method="post" >
 
 
-        <div class=" row-flex toolbar">
-            <p class="name-of-notes">Do homework</p>
+        <div class=" row-flex toolbar" >
+            <textarea class="name-of-notes bg header-note-name" asp-for="note.Name"> </textarea>
         </div>
         <div class="notes-bg">
             <div asp-validation-summary="All"></div>
-            <form method="post">
-                <input asp-for="note.Id" type="hidden" />
-                <div>
-                    <label>Name of notes </label><br />
-                    <input asp-for="note.Name" />
-                </div>
-                <div>
-                    <label>Text:</label><br />
+            <div class="padding-left">
+                <input asp-for="note.Id" type="hidden" />             
+                <div>                  
                     <textarea class="input-note" asp-for="note.Content"></textarea>
                 </div>
-                <input type="submit" value="Apply" />
-            </form>
+                <input class="font-button" type="submit" value="Apply" />
+            </div>
         </div>       
-    </div>
+    </form>
 </section>
 

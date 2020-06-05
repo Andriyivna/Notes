@@ -2,7 +2,7 @@
 
 @model Notes.CreateModel
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 <section class="main-section row-flex">
     <div class="first-div">
         <div class="row-flex toolbar bottom-border">
@@ -11,32 +11,70 @@
         </div>
         @foreach (var note in Model.NotesList)
         {
-            <form class="note" method="post">
+            <form class="note" method="post" style="background-color: @note.NoteColour;">
                 <p class="note-name">@note.Name</p>
-                <p class="note-short-content">@note.Content</p>
+                <p class="note-short-content">@Html.Raw(@note.Content)</p>
                 <div class="delete-button ">
-                    <button  class="font-button" type="submit" asp-page-handler="delete" asp-route-id="@note.Id"> Delete</button>
-                     <a   class="read-more" asp-page="DisplayNotes"  asp-route-id="@note.Id">Open</a>
+                    <button class="font-button" type="submit" asp-page-handler="delete" asp-route-id="@note.Id"> Delete</button>
+                    <a class="read-more" asp-page="DisplayNotes" asp-route-id="@note.Id">Open</a>
                 </div>
 
             </form>
         }
     </div>
-    <div class="second-div">     
+    <div class="second-div">
         <div class="notes-bg">
             <div asp-validation-summary="All"></div>
             <form method="post" class="padding-left">
                 <div>
-                    <label class="font">Name of notes </label><br />
+                    <label class="font">Name of note </label><br />
                     <textarea class="name-of-notes bg header-note-name" asp-for="NewNote.Name"></textarea>
                 </div>
+                <label for="favcolor" class="font">Select color for note:</label>
+                <input type="color" id="favcolor" value="#ff0000" asp-for="NewNote.NoteColour">
+              
+                <button type="button" id="bold" onclick="boldFunction();"><b>B</b></button>
+                <button type="button" id="bold" onclick="italicFunction();"><b>I</b></button>
+                <button type="button" id="bold" onclick="underlineFunction();"><b>U</b></button>
+                <script>
+                    function boldFunction() {
+                        document.execCommand('bold', false, null);
+                        onEditorChanged();
+                    }
+                    function italicFunction() {
+                        document.execCommand('italic', false, null);
+                        onEditorChanged();
+                    }
+                    function underlineFunction() {
+                        document.execCommand('underline', false, null);
+                        onEditorChanged();
+                    }
+                    function onEditorChanged() {
+                        var element = document.getElementById('editor');
+                        var textarea = document.getElementById('hiddenTextarea');
+
+                        textarea.value = element.innerHTML;
+                    }
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var element = document.getElementById('editor');
+                        var textarea = document.getElementById('hiddenTextarea');
+
+                        element.innerHTML = textarea.value;
+                    });
+                </script>
+
                 <div>
                     <label class="font">Text:</label><br />
-                    <textarea class="input-note" asp-for="NewNote.Content"></textarea>
+                    <div id="editor" class="editor" contenteditable="true" onkeyup="onEditorChanged()"></div>
+                    <textarea id="hiddenTextarea" class="hidden" asp-for="NewNote.Content"></textarea>
                 </div>
-                <input  class="font-button" type="submit" value="Apply" />
+                <input class="font-button" type="submit" value="Apply" />
             </form>
+
+
         </div>
     </div>
 </section>
+
+
 

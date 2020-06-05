@@ -14,14 +14,11 @@ namespace Notes
         private readonly ApplicationContext _context;
         [BindProperty]
         public Note note { get; set; }
-
         public List<Note> NotesList { get; set; }
-
         public DisplayNotesModel(ApplicationContext db)
         {
             _context = db;
         }
-      
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             NotesList = _context.NotesDb.AsNoTracking().ToList();
@@ -29,9 +26,7 @@ namespace Notes
             {
                 return NotFound();
             }
-
             note = await _context.NotesDb.FindAsync(id);
-
             if (note == null)
             {
                 return NotFound();
@@ -44,16 +39,13 @@ namespace Notes
             {
                 return Page();
             }
-
             _context.Attach(note).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-
                 if (!_context.NotesDb.Any(e => e.Id == note.Id))
                 {
                     return NotFound();
@@ -64,8 +56,6 @@ namespace Notes
                 }
             }
             return RedirectToPage("Index");
-        }
-
-       
+        }       
     }
 }

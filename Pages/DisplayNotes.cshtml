@@ -10,9 +10,9 @@
         </div>
         @foreach (var note in Model.NotesList)
         {
-            <form class="note"  method="post">
-                <p class="note-name">@note.Name</p>
-                <p class="note-short-content">@note.Content</p>
+            <form class="note"  method="post"  style="background-color: @note.NoteColour;">
+                <p class="note-name" >@note.Name</p>
+                <p class="note-short-content">@Html.Raw(note.Content)</p>
                 <div class="delete-button ">
                     <button class="font-button" asp-page-handler="delete" asp-route-id="@note.Id"> Delete</button>
                      <a  class="read-more" asp-page="DisplayNotes"  asp-route-id="@note.Id">Open</a>
@@ -21,8 +21,6 @@
         }
     </div>
     <form class="second-div" method="post" >
-
-
         <div class=" row-flex toolbar" >
             <textarea class="name-of-notes bg header-note-name" asp-for="note.Name"> </textarea>
         </div>
@@ -30,8 +28,38 @@
             <div asp-validation-summary="All"></div>
             <div class="padding-left">
                 <input asp-for="note.Id" type="hidden" />             
-                <div>                  
-                    <textarea class="input-note" asp-for="note.Content"></textarea>
+                <div>
+                    <div id="editor" class="editor" contenteditable="true" onkeyup="onEditorChanged()"></div>
+                    <textarea id="hiddenTextarea" class="hidden" asp-for="note.Content"></textarea>
+
+                    <input type="color" id="favcolor" asp-for="note.NoteColour">
+                    <button type="button" id="bold" onclick="boldFunction();"><b>B</b></button>
+                    <button type="button" id="bold" onclick="italicFunction();"><b>I</b></button>
+                    <button type="button" id="bold" onclick="underlineFunction();"><b>U</b></button>
+                    <script>
+                        function boldFunction() {
+                            document.execCommand('bold', false, null);
+                            onEditorChanged();
+                        }
+                        function italicFunction() {
+                            document.execCommand('italic', false, null);
+                            onEditorChanged();
+                        }
+                        function underlineFunction() {
+                            document.execCommand('underline', false, null);
+                            onEditorChanged();
+                        }
+                        function onEditorChanged() {
+                            var element = document.getElementById('editor');
+                            var textarea = document.getElementById('hiddenTextarea');
+                            textarea.value = element.innerHTML;
+                        }
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var element = document.getElementById('editor');
+                            var textarea = document.getElementById('hiddenTextarea');
+                            element.innerHTML = textarea.value;
+                        });
+                    </script>
                 </div>
                 <input class="font-button" type="submit" value="Apply" />
             </div>
